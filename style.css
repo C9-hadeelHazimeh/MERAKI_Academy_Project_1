@@ -1,0 +1,20 @@
+
+/* creating the header of game */
+#header{
+text-align: center;
+}
+#game-name{  
+    border-bottom: 2px dotted red;
+    display: inline-block; 
+    padding-bottom: 4px;  
+}
+/* the images */
+ #img-card {
+    padding-top: 70px;
+    padding-left: 100px;
+    height: 200px;
+    width: 200px;  
+} 
+
+
+
