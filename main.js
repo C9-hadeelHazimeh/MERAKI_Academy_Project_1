@@ -25,16 +25,28 @@ then rotate them*
 the fucnction will iterate on the images array: creating div for each images
 */
 
+// const toggleBackground=()=>{
+
+//   image.style.display = inline
+// }
 const renderImages = () => {
   images.forEach((images, i) => {
     console.log(images);
     const imageBox = document.createElement("div"); //create div for each image
-     const image = document.createElement("img"); //create image element
+    imageBox.classList.add("img");
+    const divBackground = document.createElement("div");
+    divBackground.classList.add("background");
+    const image = document.createElement("img"); //create image element
     image.src = images.src; //access the src from the object
-    image.id = "img-card";//id for the image
-    imageBox.append(image); // adding the image inside the div imageBox
+    image.id = "img-card"; //id for the image
+    imageBox.append(image, divBackground); // adding the image inside the div imageBox
     main.append(imageBox); // adding the imageBox div(s) to the main
     console.log(imageBox);
+    divBackground.addEventListener("click", () => {
+      divBackground.style.display = "none";
+      image.style.display = "block";
+    });
+    
   });
 };
 renderImages();
