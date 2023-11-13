@@ -33,26 +33,39 @@ the fucnction will iterate on the images array: creating div for each images
 modal.style.display = "none";
 const renderImages = () => {
   images.forEach((images, i) => {
+
     // console.log(images);
+    //creating images
     const imageBox = document.createElement("div"); //create div for each image
     imageBox.classList.add("img");
-    const divBackground = document.createElement("div");
-    divBackground.classList.add("background");
     const image = document.createElement("img"); //create image element
     image.src = images.src; //access the src from the object
     image.id = `img-card${i}`;
-    divBackground.id = `background${i}`;
-
     image.classList.add("img-card"); //id for the image
-          imageBox.append(image, divBackground); // adding the image inside the div imageBox
+
+   // creating backgrounds
+    const divBackground = document.createElement("div");
+    divBackground.classList.add("background");
+     divBackground.id = `background${i}`;
+     imageBox.append(image, divBackground); // adding the image inside the div imageBox
     main.append(imageBox); // adding the imageBox div(s) to the main
 
-    // I want to show all the images for 5 sec
-    //   setTimeout(() => {
-    //     divBackground.style.display = "none";
-    // }, 5000);
+    // image.style.display = "none"; 
+    // divBackground.style.display="block";
+   
+  // I want to show all the images for 5 sec
+      setTimeout(() => {
+        image.style.display = "none"; 
+        divBackground.style.display="block";
+    }, 6000); 
 
+    //I
+  //   setTimeout(() => {
+  //     image.style.display = "none";
+  //    divBackground.style.display="block";
+  // }, 2000);
 
+//event listener
     divBackground.addEventListener("click", () => {
       divBackground.style.display = "none";
       image.style.display = "block";
@@ -74,7 +87,7 @@ youLose.innerText = " You LOSE! Please try again";
 //creat para after win
 const youWin = document.createElement("p");
 youWin.id = "you-win";
-youWin.innerText = " You Win";
+youWin.innerText = " You Win Congratulations &#127881";
 
 // create button try again
 const tryAgain = document.createElement("button");

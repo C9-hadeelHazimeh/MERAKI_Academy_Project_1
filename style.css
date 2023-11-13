@@ -4,7 +4,8 @@
 text-align: center;
 }
 #game-name{  
-    border-bottom: 2px dotted red;
+    color: black;
+    border-bottom: 2px dotted  rgb(208, 176, 241);
     display: inline-block; 
     ;  
 }
@@ -19,32 +20,26 @@ text-align: center;
  
   
  .img-card {
-
-     height: 100px;
+    
+      height: 100px;
     width: 100px;  
     padding: 2px;
      margin: auto; 
-    border: 1px solid black;
-      display: none; 
+    border: 2px solid black;
+      /* display: none;  */
 }  
  .background {
-     /* display: none;   */
+    /* display: none;   */
     width: 100x;
     height: 100px;
-    border: 3px dashed rgb(10, 9, 9);
-    background-color: rgb(223, 25, 25);
-    opacity: 0.5;
+    border: 2px dashed black;
+    background-color: rgb(208, 176, 241);
+    /* opacity: 0.5; */
+    display: none;
   } 
 
 
-/* 
-  .modal{
-    display: grid;
-    grid-template-columns: repeat(4,1fr) ;
-    /* z-index: 1; */
-   
-  
-
+ 
      .modal {
     
      position: fixed; 
@@ -78,15 +73,16 @@ color: blue;
 
   #you-win{
     display: none;  
-  color: red;
+  color: rgb(91, 17, 166);;
   font-size: large;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   }
 
  #try-again{
-    /* margin-top: 20px; */
+    margin-top: 20px;
     width: 100px;
-    color: black;
+    border: 2px dashed rgb(122, 11, 234);;
+    color: rgb(62, 61, 61);;
    font-size: large;
         }  
 
