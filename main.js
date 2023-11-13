@@ -83,32 +83,38 @@ tryAgainBox.id = "tryAgain-box";
 // creating paragraph after losing
 const youLose = document.createElement("p");
 youLose.id = "you-lose";
-youLose.innerText = " You LOSE! Please try again";
+youLose.innerText = " You LOSE!" +String.fromCodePoint(0x1F915)+ "Please try again";
 //creat para after win
 const youWin = document.createElement("p");
 youWin.id = "you-win";
-youWin.innerText = " You Win Congratulations &#127881";
-
+youWin.innerText = " You Win Congratulations"+String.fromCodePoint(0x1F389)+String.fromCodePoint(0x1F973);
 // create button try again
 const tryAgain = document.createElement("button");
 const body = document.createElement("body");
 tryAgain.id = "try-again";
 tryAgain.innerText = " Try Again";
 //creat winning audio
-// const winAudio=document.createElement("AUDIO");
-// // winAudio.src="";
-// winAudio.setAttribute("src","horse.mp3")
 
-tryAgainBox.append(youLose, youWin, tryAgain);
+const quickWinAudio=document.createElement("AUDIO");
+const  winAudio=document.createElement("AUDIO");
+quickWinAudio.setAttribute("src","QuickWin.wav");
+winAudio.setAttribute("src","winning.mp3");
+
+//lose audio
+const quickLoseAudio=document.createElement("AUDIO");
+quickLoseAudio.setAttribute("src","QuickLose.wav");
+
+tryAgainBox.append(youLose, youWin, tryAgain,quickWinAudio,winAudio,quickLoseAudio);
 main.append(tryAgainBox);
 
-console.log(modal);
+
 const check = (i) => {
   if (clickedImage.length === 2) {
     //I want to prevent the user from clicking any buttons more than 2 times
     modal.style.display = "block";
     //sound true
     console.log(clickedImage);
+
     //check the id of clicked images
     if (clickedImage[0] === clickedImage[1]) {
       console.log(true);
@@ -117,18 +123,22 @@ const check = (i) => {
       setTimeout(() => {
         modal.style.display = "none";
       }, 1000);
+     
+      quickWinAudio.play(); 
 
       if (correctIteration === images.length / 2) {
         youWin.style.display = "inline";
-        console.log("win");
+        winAudio.play();
+
       }
       clickedImage.splice(0, clickedImage.length);
       //delete the array elements
       background.splice(0, background.length);
       console.log(clickedImage.length);
     } else {
-      console.log(false);
-      console.log(background[0], background[1]);
+      // console.log(false);
+      // console.log(background[0], background[1]);
+      quickLoseAudio.play();
 
       //query select for the image and background (have the same id)
       const img1 = document.querySelector(`#img-card${background[0]}`);

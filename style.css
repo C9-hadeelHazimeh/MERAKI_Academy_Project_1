@@ -10,14 +10,14 @@
   }
 
   .how-to-play {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: justify;
   
   }
 
   .how-to-play p {
     border: 2px dashed rgb(208, 176, 241);
-    font-size: large;
+    font-size: medium;
     line-height: 1.5;
     padding-top: 10px;
     padding-left: 10px;
@@ -27,26 +27,6 @@
 
   } 
 
-
-/* creating the header of game */
-/* #header{
-text-align: center;
-
-}
-#game-name{  
-    color: black;
-    border-bottom: 2px dotted  rgb(208, 176, 241);
-    display: inline-block;
-     
-}
-
-
-#how-to-play-div p{
-border: 2px dashed black;
-margin-bottom: 50px;
-padding-left: 20px;
- text-align: justify; 
-} */
 
 
 .main{
@@ -98,7 +78,7 @@ margin-bottom: 1000px;
 color: blue;
 } */
   #tryAgain-box{
-    padding-top: 50px;
+    padding-top: 20px;
      
   }
 
@@ -114,7 +94,7 @@ color: blue;
     display: none;  
   color: rgb(91, 17, 166);;
   font-size: large;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   }
 
  #try-again{
