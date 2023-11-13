@@ -38,11 +38,8 @@ text-align: center;
   } 
 
   #tryAgain-box{
-    padding-top: 10px;
-    
-   
-    gap: 15px; 
-    
+    padding-top: 50px;
+     
   }
 
    #you-lose{
@@ -50,13 +47,21 @@ text-align: center;
   display: none;
   color: red;
   font-size: large;
+  margin-bottom: 5px;
+  }
+
+  #you-win{
+    display: none;  
+  color: red;
+  font-size: large;
   margin-bottom: 2px;
   }
 
  #try-again{
-    margin-top: 10px;
+    /* margin-top: 20px; */
     width: 100px;
     color: black;
    font-size: large;
         }  
+
 

@@ -17,13 +17,10 @@ const images = [
   { id: 2, src: "./images/img 2.jpg" },
 ];
 
-
-
-
-
 let clickedImage = [];
-let background=[]
-let wrongiteration=0;
+let background = [];
+let wrongiteration = 0;
+let correctIteration = 0;
 
 /*Render the images 
 //I want to render the images with the 
@@ -57,78 +54,87 @@ const renderImages = () => {
       background.push(i);
       check(i); //e,a
     });
-    
   });
 };
 //console.log(clickedImage);
 renderImages();
 //box for the paragraph and button
-const tryAgainBox =document.createElement("div");
-tryAgainBox.id="tryAgain-box"
-// creating paragraph after losing 
-const youLose=document.createElement("p");
-youLose.id="you-lose"
-youLose.innerText=" You LOSE! Please try again"
-// create button try again 
+const tryAgainBox = document.createElement("div");
+tryAgainBox.id = "tryAgain-box";
+// creating paragraph after losing
+const youLose = document.createElement("p");
+youLose.id = "you-lose";
+youLose.innerText = " You LOSE! Please try again";
+//create para after win
+const youWin = document.createElement("p");
+youWin.id = "you-win";
+youWin.innerText = " You Win";
 
-const tryAgain=document.createElement("button");
-const body=document.createElement("body");
-tryAgain.id="try-again";
-tryAgain.innerText=" Try Again";
+// create button try again
+const tryAgain = document.createElement("button");
+const body = document.createElement("body");
+tryAgain.id = "try-again";
+tryAgain.innerText = " Try Again";
+//creat winning audio
+const winAudio=document.createElement("AUDIO");
+// winAudio.src="";
+win.setAttribute("src","horse.mp3")
 
-tryAgainBox.append(youLose,tryAgain);
+tryAgainBox.append(youLose,youWin,tryAgain);
 main.append(tryAgainBox);
 
 const check = (i) => {
-   if (clickedImage.length === 2) {
+  if (clickedImage.length === 2) {
     //sound true
     console.log(clickedImage);
+    //check the id of clicked images
     if (clickedImage[0] === clickedImage[1]) {
-      //check the id of clicked images
       console.log(true);
+      
+      correctIteration += 1;
+      console.log(correctIteration);
+      if (correctIteration === images.length/2) {
+        youWin.style.display= "inline"
+        console.log("win");
+      }
       clickedImage.splice(0, clickedImage.length);
-       //delete the array elements
-       background.splice(0,background.length);
+      //delete the array elements
+      background.splice(0, background.length);
       console.log(clickedImage.length);
     } else {
       console.log(false);
-       console.log(background[0], background[1]);
+      console.log(background[0], background[1]);
+
       //query select for the image and background (have the same id)
       const img1 = document.querySelector(`#img-card${background[0]}`);
-  
-      const background1 = document.querySelector(
-        `#background${background[0]}`
-      );
+
+      const background1 = document.querySelector(`#background${background[0]}`);
 
       const img2 = document.querySelector(`#img-card${background[1]}`);
-      console.log(img2)
-      const background2 = document.querySelector(
-        `#background${background[1]}`
-      );
-      console.log(background)
-      
+      console.log(img2);
+      const background2 = document.querySelector(`#background${background[1]}`);
+      console.log(background);
+
       // img1.style.pointerEvents = "none";
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         img1.style.display = "none";
         background1.style.display = "block";
         img2.style.display = "none";
-        background2.style.display = "block"; 
-      },3000)
-          
+        background2.style.display = "block";
+      }, 3000);
+
       // console.log(clickedImage);
       clickedImage.splice(0, clickedImage.length);
-      background.splice(0,background.length);
-       wrongiteration+=1
-       //sound wrong
-       console.log(wrongiteration)
-       //if 3 wrong iterations => lose 
-   
-       if (wrongiteration===3)
-       {
-        youLose.style.display= "inline"
-        
-       }
+      background.splice(0, background.length);
+      wrongiteration += 1;
+      //sound wrong
+      console.log(wrongiteration);
+      //if 3 wrong iterations => lose
+
+      if (wrongiteration === 3) {
+        youLose.style.display = "inline";
+      }
     }
   }
 };
