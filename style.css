@@ -1,17 +1,56 @@
 
+#header {
+    text-align: center;
+  }
+
+  #game-name {  
+    color: black;
+    border-bottom: 2px dashed rgb(208, 176, 241);
+    display: inline-block;
+  }
+
+  .how-to-play {
+    margin-bottom: 50px;
+    text-align: justify;
+  
+  }
+
+  .how-to-play p {
+    border: 2px dashed rgb(208, 176, 241);
+    font-size: large;
+    line-height: 1.5;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-left: 20px;
+    display: inline-block;
+   
+
+  } 
+
+
 /* creating the header of game */
-#header{
+/* #header{
 text-align: center;
+
 }
 #game-name{  
     color: black;
     border-bottom: 2px dotted  rgb(208, 176, 241);
-    display: inline-block; 
-    ;  
+    display: inline-block;
+     
 }
-/* the images */
+
+
+#how-to-play-div p{
+border: 2px dashed black;
+margin-bottom: 50px;
+padding-left: 20px;
+ text-align: justify; 
+} */
+
 
 .main{
+    padding-bottom: 5px;
     display: grid;
     grid-template-columns: repeat(4,1fr) ;
     gap: 5px;
@@ -21,7 +60,7 @@ text-align: center;
   
  .img-card {
     
-      height: 100px;
+    height: 100px;
     width: 100px;  
     padding: 2px;
      margin: auto; 
@@ -54,10 +93,10 @@ text-align: center;
     background-color:  rgba(0,0,0,0);
   }   
   
- p { 
+ /* p { 
 margin-bottom: 1000px;
 color: blue;
-}
+} */
   #tryAgain-box{
     padding-top: 50px;
      
