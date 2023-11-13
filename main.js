@@ -16,7 +16,8 @@ const images = [
   { id: 6, src: "./images/img 6.jpg" },
   { id: 2, src: "./images/img 2.jpg" },
 ];
-
+const modal = document.querySelector(".modal");
+// modal.style.display="none"
 let clickedImage = [];
 let background = [];
 let wrongiteration = 0;
@@ -29,8 +30,8 @@ then waiting for 10 sec
 then rotate them*
 the fucnction will iterate on the images array: creating div for each images
 */
+modal.style.display = "none";
 const renderImages = () => {
-  let click = 0;
   images.forEach((images, i) => {
     // console.log(images);
     const imageBox = document.createElement("div"); //create div for each image
@@ -43,14 +44,19 @@ const renderImages = () => {
     divBackground.id = `background${i}`;
 
     image.classList.add("img-card"); //id for the image
-    imageBox.append(image, divBackground); // adding the image inside the div imageBox
+          imageBox.append(image, divBackground); // adding the image inside the div imageBox
     main.append(imageBox); // adding the imageBox div(s) to the main
-    // console.log(imageBox);
+
+    // I want to show all the images for 5 sec
+    //   setTimeout(() => {
+    //     divBackground.style.display = "none";
+    // }, 5000);
+
+
     divBackground.addEventListener("click", () => {
       divBackground.style.display = "none";
       image.style.display = "block";
-      // console.log(images);
-      clickedImage.push(images.id);
+            clickedImage.push(images.id);
       background.push(i);
       check(i); //e,a
     });
@@ -65,7 +71,7 @@ tryAgainBox.id = "tryAgain-box";
 const youLose = document.createElement("p");
 youLose.id = "you-lose";
 youLose.innerText = " You LOSE! Please try again";
-//create para after win
+//creat para after win
 const youWin = document.createElement("p");
 youWin.id = "you-win";
 youWin.innerText = " You Win";
@@ -76,25 +82,31 @@ const body = document.createElement("body");
 tryAgain.id = "try-again";
 tryAgain.innerText = " Try Again";
 //creat winning audio
-const winAudio=document.createElement("AUDIO");
-// winAudio.src="";
-win.setAttribute("src","horse.mp3")
+// const winAudio=document.createElement("AUDIO");
+// // winAudio.src="";
+// winAudio.setAttribute("src","horse.mp3")
 
-tryAgainBox.append(youLose,youWin,tryAgain);
+tryAgainBox.append(youLose, youWin, tryAgain);
 main.append(tryAgainBox);
 
+console.log(modal);
 const check = (i) => {
   if (clickedImage.length === 2) {
+    //I want to prevent the user from clicking any buttons more than 2 times
+    modal.style.display = "block";
     //sound true
     console.log(clickedImage);
     //check the id of clicked images
     if (clickedImage[0] === clickedImage[1]) {
       console.log(true);
-      
       correctIteration += 1;
-      console.log(correctIteration);
-      if (correctIteration === images.length/2) {
-        youWin.style.display= "inline"
+      //prevent from click for 1 sec
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 1000);
+
+      if (correctIteration === images.length / 2) {
+        youWin.style.display = "inline";
         console.log("win");
       }
       clickedImage.splice(0, clickedImage.length);
@@ -122,14 +134,16 @@ const check = (i) => {
         background1.style.display = "block";
         img2.style.display = "none";
         background2.style.display = "block";
+        //prevent from click when answer is wrong
+        modal.style.display = "none";
       }, 3000);
 
-      // console.log(clickedImage);
       clickedImage.splice(0, clickedImage.length);
       background.splice(0, background.length);
       wrongiteration += 1;
+
       //sound wrong
-      console.log(wrongiteration);
+      // console.log(wrongiteration);
       //if 3 wrong iterations => lose
 
       if (wrongiteration === 3) {
@@ -139,13 +153,5 @@ const check = (i) => {
   }
 };
 
-/* 
-  doc.queS( `#img-card${clickedImage[0]}`) => to none
-  doc.queS( `#img-card${clickedImage[1]}`) => to none
-  doc.queS( `#divBackground${clickedImage[0]}`) => to block
-  doc.queS( `#divBackground${clickedImage[1]}`) => to block
-
-    divBackground.id = `background${images.id}`;
 
 
-*/
