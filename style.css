@@ -12,10 +12,13 @@ text-align: center;
 
 .main{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr) ;
     gap: 5px;
 
 }
+ 
+
+  
  .img-card {
 
      height: 100px;
@@ -33,4 +36,27 @@ text-align: center;
     background-color: rgb(223, 25, 25);
     opacity: 0.5;
   } 
+
+  #tryAgain-box{
+    padding-top: 10px;
+    
+   
+    gap: 15px; 
+    
+  }
+
+   #you-lose{
+
+  display: none;
+  color: red;
+  font-size: large;
+  margin-bottom: 2px;
+  }
+
+ #try-again{
+    margin-top: 10px;
+    width: 100px;
+    color: black;
+   font-size: large;
+        }  
 
