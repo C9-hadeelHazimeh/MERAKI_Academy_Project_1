@@ -68,23 +68,30 @@ const check = () => {
       console.log(clickedImage.length);
     } else {
       console.log(false);
-      console.log(clickedImage[0], clickedImage[1]);
+      // console.log(clickedImage[0], clickedImage[1]);
+      //query select for the image and background (have the same id)
       const img1 = document.querySelector(`#img-card${clickedImage[0]}`);
-
+  console.log(img1)
       const background1 = document.querySelector(
         `#background${clickedImage[0]}`
       );
 
       const img2 = document.querySelector(`#img-card${clickedImage[1]}`);
-
+      console.log(img2)
       const background2 = document.querySelector(
         `#background${clickedImage[1]}`
       );
-      background1.style.display = "block";
-      background2.style.display = "block";
-      img1.style.display = "none";
-      img2.style.display = "none";
+      console.log(background1,background2)
+      // img1.style.pointerEvents = "none";
       
+      setTimeout(()=>{
+        img1.style.display = "none";
+        background1.style.display = "block";
+      
+        img2.style.display = "none";
+        background2.style.display = "block"; 
+      },"1000")
+          
       // console.log(clickedImage);
       clickedImage.splice(0, clickedImage.length);
       
