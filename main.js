@@ -1,6 +1,8 @@
 //creating main container
 const main = document.querySelector(".main");
-const tryAgain=document.querySelector("#try-again")
+const tryAgain = document.querySelector("#try-again");
+const lose_win_text = document.querySelector("#lose-win-text");
+
 // array of images shown in the game
 const images = [
   { id: 1, src: "./images/img 1.jpg" },
@@ -17,7 +19,7 @@ const images = [
   { id: 2, src: "./images/img 2.jpg" },
 ];
 const modal = document.querySelector(".modal");
-// modal.style.display="none"
+
 let clickedImage = [];
 let background = [];
 let wrongiteration = 0;
@@ -30,11 +32,9 @@ then waiting for 10 sec
 then rotate them*
 the fucnction will iterate on the images array: creating div for each images
 */
-modal.style.display = "none";
 
 const renderImages = (images) => {
-  main.innerHTML = ''; 
-  
+  modal.style.display = "none";
   images.forEach((images, i) => {
     const imageBox = document.createElement("div"); //create div for each image
     imageBox.classList.add("img");
@@ -43,76 +43,90 @@ const renderImages = (images) => {
     image.id = `img-card${i}`;
     image.classList.add("img-card"); //id for the image
 
-   // creating backgrounds
+    // creating backgrounds
     const divBackground = document.createElement("div");
     divBackground.classList.add("background");
-     divBackground.id = `background${i}`;
-     imageBox.append(image, divBackground); // adding the image inside the div imageBox
+    divBackground.id = `background${i}`;
+    imageBox.append(image, divBackground); // adding the image inside the div imageBox
     main.append(imageBox); // adding the imageBox div(s) to the main
-   
-    // image.style.display = "none"; 
-    // divBackground.style.display="block";
-   
-  // I want to show all the images for 5 sec
-      setTimeout(() => {
-        image.style.display = "none"; 
-        divBackground.style.display="block";
-    }, 6000); 
+    //  console.log(main.innerHTML)
 
-//event listener
+    // I want to show all the images for 6 sec
+    setTimeout(() => {
+      image.style.display = "none";
+      divBackground.style.display = "block";
+    }, 6000);
+
+    //event listener
     divBackground.addEventListener("click", () => {
       divBackground.style.display = "none";
       image.style.display = "block";
-     clickedImage.push(images.id);
+      clickedImage.push(images.id);
       background.push(i);
-      check(i); //e,a
+      check(i);
     });
   });
-  // 
+  //
 };
-//console.log(clickedImage);
- renderImages(images);
+
+renderImages(images);
+
 //box for the paragraph and button
 const tryAgainBox = document.createElement("div");
 tryAgainBox.id = "tryAgain-box";
 // creating paragraph after losing
 const youLose = document.createElement("p");
 youLose.id = "you-lose";
-youLose.innerText = " You LOSE!" +String.fromCodePoint(0x1F915)+ "Please try again";
+youLose.innerText =
+  " You LOSE!" + String.fromCodePoint(0x1f915) + "Please try again";
 //creat para after win
 const youWin = document.createElement("p");
 youWin.id = "you-win";
-youWin.innerText = " You Win Congratulations"+String.fromCodePoint(0x1F389)+String.fromCodePoint(0x1F973);
-// create button try again
-// const tryAgain = document.createElement("button");
+youWin.innerText =
+  " You Win    Congratulations" +
+  String.fromCodePoint(0x1f389) +
+  String.fromCodePoint(0x1f973);
+  lose_win_text.append(youLose, youWin);
 const body = document.createElement("body");
-// tryAgain.id = "try-again";
-// tryAgain.innerText = " Try Again";
-//creat winning audio
 
-const quickWinAudio=document.createElement("AUDIO");
-const  winAudio=document.createElement("AUDIO");
-quickWinAudio.setAttribute("src","QuickWin.wav");
-winAudio.setAttribute("src","winning.mp3");
+//creat winning audio
+const quickWinAudio = document.createElement("AUDIO");
+const winAudio = document.createElement("AUDIO");
+quickWinAudio.setAttribute("src", "QuickWin.wav");
+winAudio.setAttribute("src", "winning.mp3");
 
 //lose audio
-const quickLoseAudio=document.createElement("AUDIO");
-const LoseAudio=document.createElement("AUDIO");
+const quickLoseAudio = document.createElement("AUDIO");
+const LoseAudio = document.createElement("AUDIO");
 
-quickLoseAudio.setAttribute("src","QuickLose.wav");
-LoseAudio.setAttribute("src","lose.wav");
-tryAgainBox.append(youLose,youWin,quickWinAudio,winAudio,quickLoseAudio,LoseAudio);
+quickLoseAudio.setAttribute("src", "QuickLose.wav");
+LoseAudio.setAttribute("src", "lose.wav");
+tryAgainBox.append(quickWinAudio, winAudio, quickLoseAudio, LoseAudio);
+
 main.append(tryAgainBox);
 
-// renderImages(images);
+
+//lose win functions  place
+const winGame = () => {
+  console.log(" final win");
+  youWin.style.display = "inline";
+  winAudio.play();
+};
+
+const loseGame = () => {
+  // modal.style.display = "block"; I want to dispaly the modal so the user cant click after end of game
+  // the modal will disapper when clicking  try again button
+
+  modal.style.display = "block";
+  console.log("final lose");
+  youLose.style.display = "inline";
+  LoseAudio.play();
+};
+
 const check = (i) => {
   if (clickedImage.length === 2) {
-    const lose =()=>{}
     //I want to prevent the user from clicking any buttons more than 2 times
     modal.style.display = "block";
-    //sound true
-    console.log(clickedImage);
-
     //check the id of clicked images
     if (clickedImage[0] === clickedImage[1]) {
       console.log(true);
@@ -120,35 +134,37 @@ const check = (i) => {
       //prevent from click for 1 sec
       setTimeout(() => {
         modal.style.display = "none";
-      }, 1000);
-     
-      quickWinAudio.play(); 
+      }, 2000);
+      quickWinAudio.play();
+      //Win game function
+      //  const winGame =()=>{
+      // if (correctIteration === images.length / 2) {
+      //   youWin.style.display = "inline";
+      //   winAudio.play();
 
+      // }
+      // }
+      console.log(" win inside fucntion:", correctIteration);
       if (correctIteration === images.length / 2) {
-        youWin.style.display = "inline";
-        winAudio.play();
-
+        console.log(correctIteration);
+        winGame();
       }
+
       clickedImage.splice(0, clickedImage.length);
       //delete the array elements
       background.splice(0, background.length);
       console.log(clickedImage.length);
     } else {
-      // console.log(false);
-      // console.log(background[0], background[1]);
       quickLoseAudio.play();
-
+      wrongiteration += 1;
       //query select for the image and background (have the same id)
       const img1 = document.querySelector(`#img-card${background[0]}`);
 
       const background1 = document.querySelector(`#background${background[0]}`);
 
       const img2 = document.querySelector(`#img-card${background[1]}`);
-      console.log(img2);
-      const background2 = document.querySelector(`#background${background[1]}`);
-      console.log(background);
 
-      // img1.style.pointerEvents = "none";
+      const background2 = document.querySelector(`#background${background[1]}`);
 
       setTimeout(() => {
         img1.style.display = "none";
@@ -157,39 +173,46 @@ const check = (i) => {
         background2.style.display = "block";
         //prevent from click when answer is wrong
         modal.style.display = "none";
-      }, 3000);
-
+      }, 2000);
+      console.log("lose inside fucntion:", wrongiteration);
+      if (wrongiteration === 3) {
+        console.log("inside if while calling:" ,wrongiteration);
+        loseGame();
+      }
       clickedImage.splice(0, clickedImage.length);
       background.splice(0, background.length);
-      wrongiteration += 1;
 
-      //sound wrong
-      // console.log(wrongiteration);
-      //if 3 wrong iterations => lose
+      // if (correctIteration === images.length / 2) {winGame();}
 
-      if (wrongiteration === 3) {
+      //lose game function
+      //   const loseGame =()=>{
+      //   if (wrongiteration === 3) {
 
-        youLose.style.display = "inline";
-        LoseAudio.play();
-      }
+      //     youLose.style.display = "inline";
+      //     LoseAudio.play();
+      //   }
+      // }
     }
   }
 };
-
-const shuffleImages=(images)=>{
-for(i=images.length-1;i>0;i--){
-  const j= Math.floor(Math.random() * (i+1));//random indeces
-  [images[i], images[j]] = [images[j], images[i]];
- }
- 
-}
-const playAgain=()=>{
+const shuffleImages = (images) => {
+  for (i = images.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); //random indeces
+    [images[i], images[j]] = [images[j], images[i]];
+  }
+};
+const playAgain = () => {
   shuffleImages(images);
-  renderImages(images)
+  main.innerHTML = "";
+  correctIteration = 0;
+  wrongiteration = 0;
+  lose_win_text.innerHTML = "";
+  modal.style.display = "none";
+
+  renderImages(images);
   console.log("Shuffled Images:", images);
-}
+};
 
-tryAgain.addEventListener("click",playAgain);
-
+tryAgain.addEventListener("click", playAgain);
 
 //  renderImages(images);
