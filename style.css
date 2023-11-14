@@ -78,27 +78,28 @@ margin-bottom: 1000px;
 color: blue;
 } */
   #tryAgain-box{
-    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    /* padding-top: 5px; */
      
   }
 
    #you-lose{
-
   display: none;
   color: red;
-  font-size: large;
-  margin-bottom: 5px;
+  font-size: medium;
+  /* margin-bottom: 3px; */
   }
 
   #you-win{
     display: none;  
   color: rgb(91, 17, 166);;
   font-size: large;
-  margin-bottom: 10px;
+  /* margin-bottom: 3px; */
   }
 
  #try-again{
-    margin-top: 20px;
+    margin-top: 5px;
     width: 100px;
     border: 2px dashed rgb(122, 11, 234);;
     color: rgb(62, 61, 61);;

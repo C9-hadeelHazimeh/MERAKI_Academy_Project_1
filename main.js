@@ -1,6 +1,6 @@
 //creating main container
 const main = document.querySelector(".main");
-
+const tryAgain=document.querySelector("#try-again")
 // array of images shown in the game
 const images = [
   { id: 1, src: "./images/img 1.jpg" },
@@ -31,11 +31,11 @@ then rotate them*
 the fucnction will iterate on the images array: creating div for each images
 */
 modal.style.display = "none";
-const renderImages = () => {
-  images.forEach((images, i) => {
 
-    // console.log(images);
-    //creating images
+const renderImages = (images) => {
+  main.innerHTML = ''; 
+  
+  images.forEach((images, i) => {
     const imageBox = document.createElement("div"); //create div for each image
     imageBox.classList.add("img");
     const image = document.createElement("img"); //create image element
@@ -49,7 +49,7 @@ const renderImages = () => {
      divBackground.id = `background${i}`;
      imageBox.append(image, divBackground); // adding the image inside the div imageBox
     main.append(imageBox); // adding the imageBox div(s) to the main
-
+   
     // image.style.display = "none"; 
     // divBackground.style.display="block";
    
@@ -59,24 +59,19 @@ const renderImages = () => {
         divBackground.style.display="block";
     }, 6000); 
 
-    //I
-  //   setTimeout(() => {
-  //     image.style.display = "none";
-  //    divBackground.style.display="block";
-  // }, 2000);
-
 //event listener
     divBackground.addEventListener("click", () => {
       divBackground.style.display = "none";
       image.style.display = "block";
-            clickedImage.push(images.id);
+     clickedImage.push(images.id);
       background.push(i);
       check(i); //e,a
     });
   });
+  // 
 };
 //console.log(clickedImage);
-renderImages();
+ renderImages(images);
 //box for the paragraph and button
 const tryAgainBox = document.createElement("div");
 tryAgainBox.id = "tryAgain-box";
@@ -89,10 +84,10 @@ const youWin = document.createElement("p");
 youWin.id = "you-win";
 youWin.innerText = " You Win Congratulations"+String.fromCodePoint(0x1F389)+String.fromCodePoint(0x1F973);
 // create button try again
-const tryAgain = document.createElement("button");
+// const tryAgain = document.createElement("button");
 const body = document.createElement("body");
-tryAgain.id = "try-again";
-tryAgain.innerText = " Try Again";
+// tryAgain.id = "try-again";
+// tryAgain.innerText = " Try Again";
 //creat winning audio
 
 const quickWinAudio=document.createElement("AUDIO");
@@ -102,14 +97,17 @@ winAudio.setAttribute("src","winning.mp3");
 
 //lose audio
 const quickLoseAudio=document.createElement("AUDIO");
-quickLoseAudio.setAttribute("src","QuickLose.wav");
+const LoseAudio=document.createElement("AUDIO");
 
-tryAgainBox.append(youLose, youWin, tryAgain,quickWinAudio,winAudio,quickLoseAudio);
+quickLoseAudio.setAttribute("src","QuickLose.wav");
+LoseAudio.setAttribute("src","lose.wav");
+tryAgainBox.append(youLose,youWin,quickWinAudio,winAudio,quickLoseAudio,LoseAudio);
 main.append(tryAgainBox);
 
-
+// renderImages(images);
 const check = (i) => {
   if (clickedImage.length === 2) {
+    const lose =()=>{}
     //I want to prevent the user from clicking any buttons more than 2 times
     modal.style.display = "block";
     //sound true
@@ -170,11 +168,28 @@ const check = (i) => {
       //if 3 wrong iterations => lose
 
       if (wrongiteration === 3) {
+
         youLose.style.display = "inline";
+        LoseAudio.play();
       }
     }
   }
 };
 
+const shuffleImages=(images)=>{
+for(i=images.length-1;i>0;i--){
+  const j= Math.floor(Math.random() * (i+1));//random indeces
+  [images[i], images[j]] = [images[j], images[i]];
+ }
+ 
+}
+const playAgain=()=>{
+  shuffleImages(images);
+  renderImages(images)
+  console.log("Shuffled Images:", images);
+}
+
+tryAgain.addEventListener("click",playAgain);
 
 
+//  renderImages(images);
