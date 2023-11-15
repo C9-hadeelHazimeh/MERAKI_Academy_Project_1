@@ -5,7 +5,7 @@
 
   #game-name {  
     color: black;
-    border-bottom: 2px dashed rgb(208, 176, 241);
+    border-bottom: 2px dashed rgb(91, 17, 166);
     display: inline-block;
    
   }
@@ -20,36 +20,27 @@
   }
 
   .how-to-play p {
-    border: 2px dashed rgb(208, 176, 241);
+    border: 2px dashed rgb(91, 17, 166);
     font-size: large;
-    
-    
-
     justify-content: center;
     line-height: 1.75;
-     text-align: justify;
+    text-align: justify;
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     padding-top: 20px;
-    
-    /* padding-top: 10px;
-    padding-left: 10px;
-    margin-left: 20px; */
-   
+       
     }
-    .start-div{
-     
-
-    }  
+    
 
   #start{
     width: 10%;
     padding:15px;
     font-size: larger;
     font-weight: bold;
-    border: 2px dashed rgb(208, 176, 241);;
+    border: 2px dashed rgb(91, 17, 166);
+    color: rgb(62, 61, 61);
      justify-items: center;
 
   }
@@ -67,7 +58,7 @@
     
     height: 100px;
     width: 150px;  
-    padding: 10px;
+    
      margin: auto; 
     border: 2px solid black;
       /* display: none;  */
@@ -91,7 +82,7 @@
      left: 0;
      top: 0; 
     width: 100%;
-    height: 57%; 
+    height: 51%; 
      overflow: auto;  
     background-color: rgb(0,0,0); 
     background-color:  rgba(0,0,0,0.5);
@@ -106,22 +97,19 @@
     /* display: none; */
     font-size: larger;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 25px;
     width: 150px;
     height: 50px;
     border: 2px dashed rgb(91, 17, 166);
-   color: rgb(62, 61, 61);;
+   color: rgb(62, 61, 61);
    
    }  
 
   
-  #lose_win_text{
-
-    background-color: aqua;
-  }
+  
 
     #you-lose{
-      padding-left: 20px;
+      padding-left: 30px;
       color: red;
       font-size: large;
       
@@ -129,9 +117,9 @@
       }
     
       #you-win{
-        padding-left: 20px;
+        padding-left: 30px;
       color: rgb(91, 17, 166);;
-      font-size: large;
+      font-size: x-large;
        
       }
 

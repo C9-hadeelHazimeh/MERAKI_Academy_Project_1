@@ -30,8 +30,8 @@ let correctIteration = 0;
 /*Render the images 
 //I want to render the images with the 
 shape of layout 3rows*4columns 
-then waiting for 10 sec 
-then rotate them*
+then waiting for 6 sec 
+then disapear them*
 the fucnction will iterate on the images array: creating div for each images
 */
 modal.style.display = "none";
@@ -76,13 +76,11 @@ start.addEventListener(
   "click",
   (disapearGreeting = () => {
     howToPlay.style.display = "none";
-    tryAgain.style.display="block"; 
+    tryAgain.style.display = "block";
     renderImages(images);
-
   })
 );
 
-// renderImages(images);
 //box for the paragraph and button
 const tryAgainSoundsBox = document.createElement("div");
 tryAgainSoundsBox.id = "tryAgain-box";
@@ -101,8 +99,6 @@ quickLoseAudio.setAttribute("src", "QuickLose.wav");
 LoseAudio.setAttribute("src", "lose.wav");
 tryAgainSoundsBox.append(quickWinAudio, winAudio, quickLoseAudio, LoseAudio);
 
-// main.append(tryAgainBox);
-
 //lose win functions  place
 const winGame = () => {
   //creat para after win
@@ -113,12 +109,8 @@ const winGame = () => {
     String.fromCodePoint(0x1f389) +
     String.fromCodePoint(0x1f973);
   lose_win_text.append(youWin);
-
-  console.log(" final win");
   lose_win_text.style.display = "block";
-
   winAudio.play();
-  // tryAgain .style.display="block";
 };
 const loseGame = () => {
   // creating paragraph after losing
@@ -130,12 +122,9 @@ const loseGame = () => {
 
   // I want to dispaly the modal so the user cant click after end of game
   // the modal will disapper when clicking  try again button
-  console.log("final lose");
   lose_win_text.style.display = "block";
   LoseAudio.play();
-  console.log(youLose);
   modal.style.display = "block";
-  // tryAgain .style.display="block";
 };
 
 const check = (i) => {
@@ -144,7 +133,6 @@ const check = (i) => {
     modal.style.display = "block";
     //check the id of clicked images
     if (clickedImage[0] === clickedImage[1]) {
-      console.log(true);
       correctIteration += 1;
       //prevent from click for 1 sec
       setTimeout(() => {
@@ -152,7 +140,6 @@ const check = (i) => {
       }, 2000);
       quickWinAudio.play();
 
-      console.log(" win inside fucntion:", correctIteration);
       if (correctIteration === images.length / 2) {
         console.log(correctIteration);
         winGame();
@@ -161,7 +148,6 @@ const check = (i) => {
       clickedImage.splice(0, clickedImage.length);
       //delete the array elements
       background.splice(0, background.length);
-      console.log(clickedImage.length);
     } else {
       quickLoseAudio.play();
       wrongiteration += 1;
@@ -174,7 +160,6 @@ const check = (i) => {
 
       const background2 = document.querySelector(`#background${background[1]}`);
 
-      console.log("lose inside fucntion:", wrongiteration);
       if (wrongiteration === 3) {
         console.log("inside if while calling:", wrongiteration);
         loseGame();
