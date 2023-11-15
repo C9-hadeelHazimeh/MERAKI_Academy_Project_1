@@ -60,7 +60,7 @@
 
  
      .modal {
-    margin-top: 25px;
+    margin-top: 30px;
      position: fixed; 
      z-index: 1; 
      padding-top: 100px; 
@@ -73,28 +73,24 @@
     background-color:  rgba(0,0,0,0.5);
   }   
   
- /* p { 
-margin-bottom: 1000px;
-color: blue;
-} */
-  /* #tryAgain-box{
-    display: flex;
-    flex-direction: column;
-    /* padding-top: 5px; */
+  #lose_win_text{
+
+    background-color: aqua;
+  }
 
     #you-lose{
-      
+      /* display: none; */
       color: red;
       font-size: medium;
-      display: none;
+      
       
       }
     
       #you-win{
-         
+        /* display: none;   */
       color: rgb(91, 17, 166);;
       font-size: large;
-      display: none; 
+       
       }
 
 

@@ -74,21 +74,7 @@ renderImages(images);
 //box for the paragraph and button
 const tryAgainBox = document.createElement("div");
 tryAgainBox.id = "tryAgain-box";
-// creating paragraph after losing
-const youLose = document.createElement("p");
-youLose.id = "you-lose";
-youLose.innerText =
-  " You LOSE!" + String.fromCodePoint(0x1f915) + "Please try again";
-//creat para after win
-const youWin = document.createElement("p");
-youWin.id = "you-win";
-youWin.innerText =
-  " You Win    Congratulations" +
-  String.fromCodePoint(0x1f389) +
-  String.fromCodePoint(0x1f973);
-  lose_win_text.append(youLose, youWin);
 const body = document.createElement("body");
-
 //creat winning audio
 const quickWinAudio = document.createElement("AUDIO");
 const winAudio = document.createElement("AUDIO");
@@ -108,19 +94,35 @@ main.append(tryAgainBox);
 
 //lose win functions  place
 const winGame = () => {
+  //creat para after win
+const youWin = document.createElement("p");
+youWin.id = "you-win";
+youWin.innerText =
+  " You Win    Congratulations" +
+ String.fromCodePoint(0x1f389) + String.fromCodePoint(0x1f973);
+  lose_win_text.append(youWin);
+  
   console.log(" final win");
-  youWin.style.display = "inline";
+  lose_win_text.style.display = "block";
+  
   winAudio.play();
 };
 
 const loseGame = () => {
-  // modal.style.display = "block"; I want to dispaly the modal so the user cant click after end of game
-  // the modal will disapper when clicking  try again button
+// creating paragraph after losing
+const youLose = document.createElement("p");
+youLose.id = "you-lose";
+youLose.innerText =
+  " You LOSE!" + String.fromCodePoint(0x1f915) + "Please try again";
+    lose_win_text.append(youLose);
 
-  modal.style.display = "block";
+ // I want to dispaly the modal so the user cant click after end of game
+  // the modal will disapper when clicking  try again button
   console.log("final lose");
-  youLose.style.display = "inline";
+  lose_win_text.style.display = "block";
   LoseAudio.play();
+  console.log(youLose);
+  modal.style.display = "block";
 };
 
 const check = (i) => {
@@ -136,14 +138,7 @@ const check = (i) => {
         modal.style.display = "none";
       }, 2000);
       quickWinAudio.play();
-      //Win game function
-      //  const winGame =()=>{
-      // if (correctIteration === images.length / 2) {
-      //   youWin.style.display = "inline";
-      //   winAudio.play();
-
-      // }
-      // }
+      
       console.log(" win inside fucntion:", correctIteration);
       if (correctIteration === images.length / 2) {
         console.log(correctIteration);
@@ -166,6 +161,13 @@ const check = (i) => {
 
       const background2 = document.querySelector(`#background${background[1]}`);
 
+     
+      console.log("lose inside fucntion:", wrongiteration);
+      if (wrongiteration === 3) {
+        console.log("inside if while calling:" ,wrongiteration);
+        loseGame();
+      }
+     else {
       setTimeout(() => {
         img1.style.display = "none";
         background1.style.display = "block";
@@ -174,24 +176,10 @@ const check = (i) => {
         //prevent from click when answer is wrong
         modal.style.display = "none";
       }, 2000);
-      console.log("lose inside fucntion:", wrongiteration);
-      if (wrongiteration === 3) {
-        console.log("inside if while calling:" ,wrongiteration);
-        loseGame();
-      }
+     }
+
       clickedImage.splice(0, clickedImage.length);
       background.splice(0, background.length);
-
-      // if (correctIteration === images.length / 2) {winGame();}
-
-      //lose game function
-      //   const loseGame =()=>{
-      //   if (wrongiteration === 3) {
-
-      //     youLose.style.display = "inline";
-      //     LoseAudio.play();
-      //   }
-      // }
     }
   }
 };
@@ -207,6 +195,7 @@ const playAgain = () => {
   correctIteration = 0;
   wrongiteration = 0;
   lose_win_text.innerHTML = "";
+
   modal.style.display = "none";
 
   renderImages(images);
@@ -215,4 +204,4 @@ const playAgain = () => {
 
 tryAgain.addEventListener("click", playAgain);
 
-//  renderImages(images);
+
