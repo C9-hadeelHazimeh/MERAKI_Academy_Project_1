@@ -2,6 +2,8 @@
 const main = document.querySelector(".main");
 const tryAgain = document.querySelector("#try-again");
 const lose_win_text = document.querySelector("#lose-win-text");
+const start= document.querySelector("#start");
+const howToPlay= document.querySelector(".how-to-play");
 
 // array of images shown in the game
 const images = [
@@ -32,9 +34,9 @@ then waiting for 10 sec
 then rotate them*
 the fucnction will iterate on the images array: creating div for each images
 */
-
+modal.style.display = "none";
 const renderImages = (images) => {
-  modal.style.display = "none";
+  
   images.forEach((images, i) => {
     const imageBox = document.createElement("div"); //create div for each image
     imageBox.classList.add("img");
@@ -69,7 +71,11 @@ const renderImages = (images) => {
   //
 };
 
-renderImages(images);
+// renderImages(images);
+// start.addEventListener("click",disapearGreeting=()=>{howToPlay.style.display="none"});
+// start.removeEventListener("click",disapearGreeting);
+start.addEventListener("click",renderImages(images))
+
 
 //box for the paragraph and button
 const tryAgainBox = document.createElement("div");
@@ -106,8 +112,8 @@ youWin.innerText =
   lose_win_text.style.display = "block";
   
   winAudio.play();
-};
-
+  // tryAgain .style.display="block";
+}
 const loseGame = () => {
 // creating paragraph after losing
 const youLose = document.createElement("p");
@@ -123,6 +129,7 @@ youLose.innerText =
   LoseAudio.play();
   console.log(youLose);
   modal.style.display = "block";
+  // tryAgain .style.display="block";
 };
 
 const check = (i) => {
