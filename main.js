@@ -76,7 +76,7 @@ start.addEventListener(
   "click",
   (disapearGreeting = () => {
     howToPlay.style.display = "none";
-    tryAgain.style.display = "block";
+    // tryAgain.style.display = "block";
     renderImages(images);
   })
 );
@@ -109,8 +109,10 @@ const winGame = () => {
     String.fromCodePoint(0x1f389) +
     String.fromCodePoint(0x1f973);
   lose_win_text.append(youWin);
+  tryAgain.style.display = "block";
   lose_win_text.style.display = "block";
   winAudio.play();
+ 
 };
 const loseGame = () => {
   // creating paragraph after losing
@@ -124,6 +126,7 @@ const loseGame = () => {
   // the modal will disapper when clicking  try again button
   lose_win_text.style.display = "block";
   LoseAudio.play();
+  tryAgain.style.display = "block";
   modal.style.display = "block";
 };
 
